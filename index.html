@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie recommendations</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Montserrat:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html{
+            font-size: 32px;
+        }
+        img{
+            width: 100%;
+            height: auto;
+        }
+        nav{
+            display: flex;
+            padding: 2em 3em;
+            margin-top: 20%;
+            width: 100%;
+            justify-content: space-around;
+            align-content: center;
+        }
+        .nav a{
+            font-size: 100%;
+        }
+        a{
+            text-decoration: none;
+            font-family: var(--montserrat);
+            font-weight: 300;
+            text-transform: uppercase;
+            color: var(--blau);
+            background-color: var(--groc);
+            border: none;
+            color: var(--blau);
+            padding: 20px;
+            border-radius: 40px;
+            font-size: 50%;
+        }
+        :root{
+            --blau: rgb(34, 47, 77);
+            --groc: rgb(239, 187, 63);
+            --taronga: rgb(209, 94, 45);
+            --blau2: rgb(225, 231, 238);
+            --clar: #f7f2ec;
+            --montserrat:'Montserrat', sans-serif;
+            --signika: 'Lora',
+
+
+        }
+        #movies{
+            background-color: var(--groc); 
+    
+        }
+        #directors{
+            background-color: var(--blau);
+        }
+        #xxss{
+            background-color: var(--taronga);
+        }
+        .container{
+            padding: 0 2em;
+        }
+        body>header{
+            display: flex;
+            flex-direction: column;
+            padding: 50px 0;
+            align-items: center;
+            justify-content: space-evenly;
+            height: 90vh;
+            background-color: var(--blau);
+        }
+        header .container{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+        hgroup{
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: space-evenly;
+            width: 100%;
+        }
+        h1{
+            font-size: 2,8em;
+            margin: 0 0 2em 0;
+            font-family: var(--montserrat);
+            font-weight: 700;
+            color:var(--taronga);
+            text-align: center;
+
+        }
+        h2{
+            font-size: 1em;
+            font-family: 'Lora';
+            font-style: italic ;
+            font-weight: 400 ;
+            color: white;
+            width: 100%;
+            text-align: center;
+        }
+        h3{
+            font-family: var(--montserrat);
+            font-style: medium;
+            font-weight: 400 ;
+            font-size: 100%;
+            color: var(--blau);
+            background-color: var(--groc);
+
+        }
+        h4{
+            font-family: 'Lora';
+            font-weight: 400;
+            font-size: 80%;
+            color: var(--blau);
+        }
+        h5{
+            font-family: var(--montserrat);
+            font-style: medium;
+            font-weight: 400 ;
+            font-size: 100%;
+            color: var(--taronga);
+            background-color: var(--blau);
+        }
+        section:first-child .container{
+            display: flex;
+            flex-wrap: wrap;
+            background-color: var(--groc);
+
+        }
+        section:last-child .container{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        /*CARD MOVIES*/
+        .cover{
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            margin: 1em;
+            padding: 0.75em;
+            align-items: center;
+            height: 522px;
+            width: 300px;
+            background-color: var(--blau);
+            
+        }
+        .cover .cover_img{
+            flex-grow: 1;
+            width: 294px;
+            height: 371px;
+        }
+        .cover .cover_img img{
+            object-fit: cover;
+            object-position: bottom;
+        }
+        .cover header{
+            width: 100%;
+            background-color:var(--blau2);
+            display: flex;
+            width: 294px;
+            height: 54px;
+            justify-content: center;
+            align-items: center;
+        }
+        /*CARD DIRECTORS*/
+        blockquote{
+            font-size: 70%;
+            font-family: var(--lora);
+            font-weight: 300;
+            color: var(--blau);
+            justify-content: center;
+        }
+        h6{
+            font-family: var(--montserrat);
+            font-style: medium;
+            font-weight: 600 ;
+            font-size: 60%;
+            color: white;
+        }         
+        .card_dissenyadors{
+            background-color: var(--groc);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            flex-grow: 1;
+            margin: 1em;
+            padding: 0.75em;
+            align-items: center;
+            height: 550px;
+            width: 300px;
+        }
+        .dissenyadors_img{
+            width: 250px;
+            height: 250px;
+
+        }
+        .dissenyadors_img img{
+            border-radius: 250px;
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            object-position: center;
+        }
+        .card_dissenyadors header{
+            margin: 0.75em 0 0 0;
+            text-align: center;
+        }
+
+        section:last-child{
+            height: 100%;
+            background-color: var(--blau);
+            color: var(--blau);
+
+        /*CARD FOOTER*/
+        color: var(--blau);
+        }
+        footer{
+            height: 40vh;
+            background-color: var(--taronga);
+        }
+        footer .container{
+            display: flex;
+        }
+        footer p{
+            font-family: var(--montserrat);
+            font-size: 70%;
+            width: 90%;
+            color: var(--blau);
+            border: none;
+            padding: 20px;
+            margin: 40px;
+            justify-content: space-around;
+        }
+        footer p:last-child{
+            font-family: var(--montserrat);
+            width: 90%;
+            font-size: 70%;
+            margin-left: 4%;
+            color: var(--blau);
+            border: none;
+            padding: 20px;
+            margin: 40px;
+            justify-content: space-around;
+        }    
+        h7{
+            font-family: var(--montserrat);
+            font-style: medium;
+            font-weight: 400 ;
+            font-size: 100%;
+            color: var(--groc);
+            background-color: var(--taronga);
+        }  
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <hgroup>
+                <h1>MOVIE RECOMMENDATIONS</h1>
+                <h2>“My personal recommendations of the 7th art: cinema”</h2>
+            </hgroup>
+            <nav>
+                <a href="#movies">movies</a>
+                <a href="#directors">directors</a>
+                <a href="#xxss">xxss</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+            <section id="movies">
+                <h3>MOVIES</h3>
+                <div class="container">
+                    <div class="cover">
+                        <div class="cover_img">
+                            <img src="IMG/Peliculas/Apocalypse Now.jpg" alt="">
+                        </div>
+                        <header>
+                            <h4>Apocalypse Now</h4>
+                        </header>
+                    </div>
+                    <div class="cover">
+                        <div class="cover_img">
+                            <img src="IMG/Peliculas/ARRIVAL.jpg" alt="">
+                        </div>
+                        <header>
+                            <h4>Arrival</h4>
+                        </header>
+                    </div>
+                    <div class="cover">
+                        <div class="cover_img">
+                            <img src="IMG/Peliculas/CAPTAIN FANTASTIC.jpg" alt="">
+                        </div>
+                        <header>
+                            <h4>Captain Fantastic</h4>
+                        </header>
+                    </div>
+                    <div class="cover">
+                        <div class="cover_img">
+                            <img src="IMG/Peliculas/DONNIE DARKO.jpg" alt="">
+                        </div>
+                        <header>
+                            <h4>Donnie Darko</h4>
+                        </header>
+                    </div>
+                    <div class="cover">
+                        <div class="cover_img">
+                            <img src="IMG/Peliculas/ETERNAL SUNSHINE OF SPOTLESS MIND.jpg" alt="">
+                        </div>
+                        <header>
+                            <h4>Eternal Sunshine</h4>
+                        </header>
+                    </div>
+                    <div class="cover">
+                        <div class="cover_img">
+                            <img src="IMG/Peliculas/FUNNY FACE.jpg" alt="">
+                        </div>
+                        <header>
+                            <h4>Funny Face</h4>
+                        </header>
+                    </div>
+                    <div class="cover">
+                        <div class="cover_img">
+                            <img src="IMG/Peliculas/INTERESTELLAR.jpg" alt="">
+                        </div>
+                        <header>
+                            <h4>Interestellar</h4>
+                        </header>
+                    </div>
+                    <div class="cover">
+                        <div class="cover_img">
+                            <img src="IMG/Peliculas/INTO THE WILD.jpg" alt="">
+                        </div>
+                        <header>
+                            <h4>Into The Wild</h4>
+                        </header>
+                    </div>
+                    <div class="cover">
+                        <div class="cover_img">
+                            <img src="IMG/Peliculas/LA GRANDE BELLEZA.jpg" alt="">
+                        </div>
+                        <header>
+                            <h4>La Grande Belleza</h4>
+                        </header>
+                    </div>
+                      <div class="cover">
+                        <div class="cover_img">
+                            <img src="IMG/Peliculas/LEON THE PROFESSIONAL.jpg" alt="">
+                        </div>
+                        <header>
+                            <h4>Leon The Professional</h4>
+                        </header>
+                    </div>
+                    <div class="cover">
+                        <div class="cover_img">
+                            <img src="IMG/Peliculas/LOST IN TRANSLATION.jpeg" alt="">
+                        </div>
+                        <header>
+                            <h4>Lost In Translation</h4>
+                        </header>
+                    </div>
+                    <div class="cover">
+                        <div class="cover_img">
+                            <img src="IMG/Peliculas/the shining.jpg" alt="">
+                        </div>
+                        <header>
+                            <h4>The Shining</h4>
+                        </header>
+                    </div>
+                </div>
+            </section>
+            <section id="directors">
+                <h5>DIRECTORS</h5>
+                <div class="container">
+                    <div class="card_dissenyadors">
+                        <div class="dissenyadors_img">
+                            <img src="IMG/Directorxs/Francis Ford Coppola.jpg" alt="" />
+                        </div>
+                        <header>
+                            <hgroup.2>
+                            <blockquote>
+                                “That’s part of the requirement for me to be an artist is that you’re trying to share your personal existence with others and trying to illuminate modern life, trying to understand life.”
+                            </blockquote>
+                            <h6>FRANCIS FORD COPPOLA</h6>
+                            </hgroup2>
+                        </header>
+                    </div>
+                    <div class="card_dissenyadors">
+                        <div class="dissenyadors_img">
+                            <img src="IMG/Directorxs/Denis Villeneuve.jpeg" alt="">
+                        </div>
+                        <header>
+                            <blockquote>
+                                “When I was a kid, I was always going to bed creating a story, and that was the birth of filmmaking for me. I would like going to the dream-state by telling the story to someone else in my mind. That was my imaginary friend”
+                            </blockquote>
+                            <h6>DENIS VILLENEUVE</h6>
+                        </header>
+                    </div>
+                    <div class="card_dissenyadors">
+                        <div class="dissenyadors_img">
+                            <img src="IMG/Directorxs/Matt Ross.jpg" alt="">
+                        </div>
+                        <header>
+                            <blockquote>
+                                “I think that we are all the heroes of our own story, and I think life comes in all shades of gray. Personally, I love movies that exist like this, where you think someone can behave both heroically and like a villain.”
+                            </blockquote>
+                            <h6>MATT ROSS</h6>
+                        </header>
+                    </div>
+                    <div class="card_dissenyadors">
+                        <div class="dissenyadors_img">
+                            <img src="IMG/Directorxs/Richard Kelly.jpeg" alt="">
+                        </div>
+                        <header>
+                            <blockquote>
+                                “This is very important for people like myself who use satellite remote sensing instruments to estimate snow water storage globally. The snow grain size is one of those key factors we need to know to do a better job.”
+                            </blockquote>
+                            <h6>RICHARD KELLY</h6>
+                        </header>
+                    </div>
+                    <div class="card_dissenyadors">
+                        <div class="dissenyadors_img">
+                            <img src="IMG/Directorxs/Michel Gondry.jpg" alt="">
+                        </div>
+                        <header>
+                            <blockquote>
+                                “I think my imagination dictates the technologies I use. But at the same time, my imagination can be technologic. Sometimes I see a tool and I know immediately how to use it, but most of the time I use the tool for an idea I already have.”
+                            </blockquote>
+                            <h6>MICHEL GONDRY</h6>
+                        </header>
+                    </div>
+                    <div class="card_dissenyadors">
+                        <div class="dissenyadors_img">
+                            <img src="IMG/Directorxs/Stanley Donen.jpg" alt="">
+                        </div>
+                        <header>
+                            <blockquote>
+                                “It was very hard to make 'Funny Face' in Paris because making movies is difficult and making a movie in a city that was glorious, that was unique and surprising, to get it, to put it on film you have to make choices and reject a lot of things.”
+                            </blockquote>
+                            <h6>STANLEY DONEN</h6>
+                        </header>
+                    </div>
+                    <div class="card_dissenyadors">
+                        <div class="dissenyadors_img">
+                            <img src="IMG/Directorxs/Christopher Nolan.jpg" alt="">
+                        </div>
+                        <header>
+                            <blockquote>
+                                “I always find myself gravitating to the analogy of a maze. Think of film noir and if you picture the story as a maze, you don't want to be hanging above the maze watching the characters make the wrong choices because it's frustrating.”
+                            </blockquote>
+                            <h6>CRISTOPHER NOLAN</h6>
+                        </header>
+                    </div>
+                    <div class="card_dissenyadors">
+                        <div class="dissenyadors_img">
+                            <img src="IMG/Directorxs/Sean Penn.jpg" alt="">
+                        </div>
+                        <header>
+                            <blockquote>
+                                “When I buy a Nikon camera, I have no tolerance for the instructions. I'm ready to make some mistakes using it and get some bad pictures back until I've figured it out for myself.”
+                            </blockquote>
+                            <h6>SEAN PENN</h6>
+                        </header>
+                    </div>
+                    <div class="card_dissenyadors">
+                        <div class="dissenyadors_img">
+                            <img src="IMG/Directorxs/Paolo Sorrentino.jpg" alt="">
+                        </div>
+                        <header>
+                            <blockquote>
+                                “What I find compelling is the moment in which people realize, with suffering and pain, that in the past there was a time when they were happy, because back then the present and the future coincided - they were one and the same thing.”
+                            </blockquote>
+                            <h6>PAOLO SORRENTINO</h6>
+                        </header>
+                    </div>
+                    <div class="card_dissenyadors">
+                        <div class="dissenyadors_img">
+                            <img src="IMG/Directorxs/Luc Besson.jpg" alt="">
+                        </div>
+                        <header>
+                            <blockquote>
+                                “It's always the small people who change things. It's never the politicians or the big guys. I mean, who pulled down the Berlin wall? It was all the people in the streets. The specialists didn't have a clue the day before.”
+                            </blockquote>
+                            <h6>LUC BESSON</h6>
+                        </header>
+                    </div>
+                    <div class="card_dissenyadors">
+                        <div class="dissenyadors_img">
+                            <img src="IMG/Directorxs/Sofia Coppola .jpg" alt="">
+                        </div>
+                        <header>
+                            <blockquote>
+                                “I had a teacher when I was in college, and he was the first person who liked my photos and said, 'The way you look at girls is your own way of seeing.' He was the first person who really gave me the confidence to try something.”
+                            </blockquote>
+                            <h6>SOFIA COPPOLA</h6>
+                        </header>
+                    </div>
+                    <div class="card_dissenyadors">
+                        <div class="dissenyadors_img">
+                            <img src="IMG/Directorxs/KubrickForLook.jpg" alt="">
+                        </div>
+                        <header>
+                            <blockquote>
+                                “I think the big mistake in schools is trying to teach children anything. Fear of getting failing grades, fear of not staying with your class, etc. Interest can produce learning on a scale compared to fear as a nuclear explosion to a firecracker.”
+                            </blockquote>
+                            <h6>STANLEY KUBRICK</h6>
+                        </header>
+                    </div>
+                </div>
+            </section>
+        
+    </main>
+    <footer id="xxss">
+            <h7>XXSS</h7>
+            <div class="container">
+                <p><a href="https://www.instagram.com/san_create/">@san_create</a></p>
+                <p><a href="https://www.instagram.com/cinema.magic/">@cinema.magic</a></p>
+                <p><a href="https://www.instagram.com/filmfilemedia/">@filmfilemedia</a></p>
+                <p><a href="https://www.instagram.com/enfilmin/">@enfilmin</a></p>
+            </div>
+    </footer>
+</body>
+</html>
